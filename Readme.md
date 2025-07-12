@@ -31,7 +31,7 @@ Ayushka_SDET_Bootcamp/
 | Skipped input | Diagnosed cause with scanner method mismatch |
 
 📁 Bug log recorded in:  
-[[`input_bug_fix.csv`](./Notes/input_bug_fix.csv)](https://github.com/ayushkabportfolio/Java_Learning/blob/master/Day-1/Notes/Bugs_understandings.csv)
+(./Notes/input_bug_fix.csv)](https://github.com/ayushkabportfolio/Java_Learning/blob/master/Day-1/Notes/Bugs_understandings.csv)
 
 ---
 
