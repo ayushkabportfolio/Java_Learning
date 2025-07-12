@@ -1,0 +1,69 @@
+1.Will scanner take input if user give input in next line?
+If you hit Enter and then type, it still reads the input — unless you’re using something like next() (which reads only a single word).
+But nextLine() reads the whole line, even with newlines or spaces.
+
+2. If user gives input with space, will it remove it?
+Depends on which Scanner method you use:
+Method	     Reads	     Handles      Spaces
+next()	     One word only	❌        Stops at space
+nextLine()	 Whole line	    ✅        Accepts spaces
+nextInt()	 Only numbers	❌        Spaces cause crash if typed incorrectly
+
+3. What can I do with Scanner?
+Scanner Method	   Used For	               Example Input
+nextLine()	       Read a full line	       "Hello world"
+next()	           Read single word	       "Hello"
+nextInt()	       Read integer	            42
+nextDouble()       Read decimal number      3.14
+nextBoolean()	   Read true/false	        true
+nextFloat()	       Read float	            3.14f
+next().charAt(0)   Read a single character	'A'
+
+4.If I press enter, it ends the program without asking. Why?
+You probably hit Enter before typing anything, and since nextLine() is waiting for input, it just takes that empty line as the input and moves on.
+Example:
+String name = sc.nextLine();
+If you just press Enter, then name becomes "" (empty string), and the program continues.
+
+5. public static void main(String[] args) SECTION
+1. Is there any other type of method? Why use public only?
+YES — methods can be:
+public – accessible from anywhere
+private – accessible only inside that class
+protected – accessible inside package + subclasses
+default (no keyword) – package-private
+
+We use public for main() because Java needs to access it from outside your class when it runs the program. If you make it private, the JVM can’t find it and your program won’t start.
+
+2. Why do we use static? What happens if we don’t?
+Static means:"This method belongs to the class, not to an object."
+In beginner English:
+If we don’t make main() static, we would need to create an object just to run it, like:
+
+UserInfo obj = new UserInfo();
+obj.main();
+
+But Java needs to run your main() before any objects exist.
+That’s why main() must be static.
+
+3. Why void? Can I write something else?
+Yes! If you want your method to return something, change void to a data type:
+
+Return Type			Meaning					Example
+int	                Returns a number	    return 5;
+String	            Returns a string	    return "Hello";
+boolean	            Returns true/false	    return true;
+void	            Returns nothing,task   (like your main() method)
+BUT...
+→ main() must be void — it’s part of Java’s rules. You can’t change it.
+
+You can write other custom methods with different return types though!
+
+4. Is main() mandatory?
+YES — for normal standalone Java programs.
+When you run Java code, JVM (Java Virtual Machine) looks for:
+public static void main(String[] args)
+That’s the official entry point. Without it, nothing runs.
+BUT — in JUnit test classes, servlets, Android apps — the entry point is different.
+
+

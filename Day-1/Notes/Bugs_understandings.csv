@@ -1,0 +1,17 @@
+Bug,Problem,,
+"No space between name and ""from""","You probably wrote: ""Hello "" + name + ""from"" instead of ""Hello "" + name + "" from """,,
+Missing value for city,"That’s likely because the city input wasn’t captured correctly, probably due to the nextInt() newline issue",,
+Typos like Welocome and no punctuation,Just needs cleaner println usage,,
+"The output was observed as: 
+Enter Your Name:ayushka
+Enter Your City:Enter your birth year:199
+Hello ayushka from  Welcome you are 1826 years old
+
+
+","If you're ever using next() (word reader), and then nextLine() (line reader)...
+Always sneak in an input.nextLine(); in between — or don’t mix them at all.",,
+Learning,,,
+Method,What it does,Accepts spaces?,Eats Enter?
+next(),Reads one word,? No,? Yes
+nextLine(),Reads entire line,? Yes,? No (leaves \n hanging)
+nextInt(),Reads number only,? No,? Yes
