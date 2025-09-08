@@ -1,0 +1,10 @@
+# Synchronization
+# ======================
+# Synchronization is a technique to sync the selenium execution speed & web page loading speed i.e. managing the mismatch in speeds.
+# The problem raises mainly while navigating from one page to another page, pop-us & alerts etc...
+# This technique deal with usuage of waits for managing the selenium execution speed not the application speed to tackle the issue.
+# The following are the synchronization techniques i.e. set selenium speed, sleep, set selenium timeout, implicit wait & explicit wait.
+
+Note
+=========
+- page load timeout by default is 5mins & it can be altered by using 'set selenium page load timeout'

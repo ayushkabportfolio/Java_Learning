@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.3 on win32)" generated="2024-04-07T15:55:43.223581" rpa="false" schemaversion="5">
+<suite id="s1" name="Webelements" source="C:\Users\samarth.kulkarni\PycharmProjects\RobotFramework-Selenium\webelements">
+<suite id="s1-s1" name="Checkbox" source="C:\Users\samarth.kulkarni\PycharmProjects\RobotFramework-Selenium\webelements\checkbox.robot">
+<test id="s1-s1-t1" name="Handle Checkboxes" line="8">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:55:43.519703" level="INFO">Opening browser 'chrome' to base url 'https://www.letskodeit.com/practice'.</msg>
+<arg>https://www.letskodeit.com/practice</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-07T15:55:43.518604" elapsed="20.034028"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.553132" elapsed="0.174013"/>
+</kw>
+<kw name="Page Should Contain Checkbox" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:03.825912" level="INFO">Current page contains checkbox '//input[@id='bmwcheck']'.</msg>
+<arg>${checkbox}</arg>
+<doc>Verifies checkbox ``locator`` is found from the current page.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.728145" elapsed="0.098267"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:03.892263" level="INFO">Element '//input[@id='bmwcheck']' is displayed.</msg>
+<arg>${checkbox}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.826412" elapsed="0.065851"/>
+</kw>
+<kw name="Element Should Be Enabled" owner="SeleniumLibrary">
+<arg>${checkbox}</arg>
+<doc>Verifies that element identified by ``locator`` is enabled.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.893031" elapsed="0.052644"/>
+</kw>
+<kw name="Checkbox Should Not Be Selected" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:03.946824" level="INFO">Verifying checkbox '//input[@id='bmwcheck']' is not selected.</msg>
+<arg>${checkbox}</arg>
+<doc>Verifies checkbox ``locator`` is not selected/checked.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.945822" elapsed="0.079457"/>
+</kw>
+<kw name="Select Checkbox" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:04.027383" level="INFO">Selecting checkbox '//input[@id='bmwcheck']'.</msg>
+<arg>${checkbox}</arg>
+<doc>Selects the checkbox identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-07T15:56:04.026358" elapsed="0.343464"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-07T15:56:06.372502" level="INFO">Slept 2 seconds.</msg>
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-07T15:56:04.370319" elapsed="2.002183"/>
+</kw>
+<kw name="Checkbox Should Be Selected" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:06.373493" level="INFO">Verifying checkbox '//input[@id='bmwcheck']' is selected.</msg>
+<arg>${checkbox}</arg>
+<doc>Verifies checkbox ``locator`` is selected/checked.</doc>
+<status status="PASS" start="2024-04-07T15:56:06.372502" elapsed="0.048719"/>
+</kw>
+<kw name="Unselect Checkbox" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:06.422221" level="INFO">Unselecting checkbox '//input[@id='bmwcheck']'.</msg>
+<arg>${checkbox}</arg>
+<doc>Removes the selection of checkbox identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-07T15:56:06.421221" elapsed="0.107669"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-07T15:56:08.531421" level="INFO">Slept 2 seconds.</msg>
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-07T15:56:06.529887" elapsed="2.001848"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-04-07T15:56:08.532391" elapsed="2.712064"/>
+</kw>
+<status status="PASS" start="2024-04-07T15:55:43.518022" elapsed="27.726936"/>
+</test>
+<status status="PASS" start="2024-04-07T15:55:43.264866" elapsed="27.981126"/>
+</suite>
+<status status="PASS" start="2024-04-07T15:55:43.240446" elapsed="28.007591"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Webelements">Webelements</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Checkbox">Webelements.Checkbox</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

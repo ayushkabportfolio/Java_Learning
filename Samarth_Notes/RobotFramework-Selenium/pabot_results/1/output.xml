@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.3 on win32)" generated="2024-04-07T15:55:43.226042" rpa="false" schemaversion="5">
+<suite id="s1" name="Webelements" source="C:\Users\samarth.kulkarni\PycharmProjects\RobotFramework-Selenium\webelements">
+<suite id="s1-s1" name="Dropdown" source="C:\Users\samarth.kulkarni\PycharmProjects\RobotFramework-Selenium\webelements\dropdown.robot">
+<test id="s1-s1-t1" name="handle dropdown" line="8">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:55:43.501552" level="INFO">Opening browser 'chrome' to base url 'https://www.letskodeit.com/practice'.</msg>
+<arg>https://www.letskodeit.com/practice</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-07T15:55:43.501552" elapsed="19.467341"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-04-07T15:56:02.969363" elapsed="0.213357"/>
+</kw>
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:03.186349" level="INFO">Selecting options from selection list '//select[@id='carselect']' by label Honda.</msg>
+<arg>${dropdown}</arg>
+<arg>Honda</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.185215" elapsed="0.229334"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-07T15:56:06.417124" level="INFO">Slept 3 seconds.</msg>
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.415679" elapsed="3.001445"/>
+</kw>
+<kw name="Select From List By Value" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:06.418109" level="INFO">Selecting options from selection list '//select[@id='carselect']' by value bmw.</msg>
+<arg>${dropdown}</arg>
+<arg>bmw</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<status status="PASS" start="2024-04-07T15:56:06.417124" elapsed="0.115433"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-07T15:56:09.534194" level="INFO">Slept 3 seconds.</msg>
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-07T15:56:06.533587" elapsed="3.000868"/>
+</kw>
+<kw name="Select From List By Index" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:09.535493" level="INFO">Selecting options from selection list '//select[@id='carselect']' by index 2.</msg>
+<arg>${dropdown}</arg>
+<arg>2</arg>
+<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
+<status status="PASS" start="2024-04-07T15:56:09.534455" elapsed="0.205094"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-07T15:56:12.741301" level="INFO">Slept 3 seconds.</msg>
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-07T15:56:09.740049" elapsed="3.001252"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-04-07T15:56:12.741301" elapsed="2.463205"/>
+</kw>
+<status status="PASS" start="2024-04-07T15:55:43.500552" elapsed="31.704457"/>
+</test>
+<status status="PASS" start="2024-04-07T15:55:43.265878" elapsed="31.939131"/>
+</suite>
+<status status="PASS" start="2024-04-07T15:55:43.242120" elapsed="31.963907"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Webelements">Webelements</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Dropdown">Webelements.Dropdown</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

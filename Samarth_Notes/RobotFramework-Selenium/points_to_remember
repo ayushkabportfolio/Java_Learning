@@ -1,0 +1,12 @@
+- In robot there is no need to pass text arguments to keyword as 'str', it will auto consider it as a str
+- In robot selenium I cannot perform action on different elemnts matching the same locator, in that case only first matching element will be selected.
+- Indexing starts from 1 in locators & in selenium, but for dropdown options indexing starts from 0(select from list by index).
+- @{my_list}    create list    1    2    3    4    5
+- while checking the condition with the str value should be specified withing ''. but when I am specifying to var no need to give quotes.
+- Only 'Test Cases' section is mandatory for robot file execution
+- ${EMPTY}
+- I need to refer elasped time total execution time not  in the output/log file for the test execution duration.
+- * & ? for pattern matching
+- Page Object Model is basically the use of a seperate var, keyword & test files for each web page.
+- When I install robotframework, some standard libraries will be installed alog with it like builtin, data-time, collections, string etc, no need to install them seperately and if I want to use these in suite, for builtin it is not necessary to import with library but for other std lib it is must.
+- To work with str there is string lib & to work with date-time there is date-time lib.

@@ -1,0 +1,3 @@
+*** Test Cases ***,${user},${pass},${polarity}
+valid user and invalid pass,samarthkulkarni777@gmail.com,GitHub@12,positive
+invalid user and valid pass,sam777@gmail.com,Git@1234,negative

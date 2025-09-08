@@ -1,0 +1,9 @@
+datasources:014f075f20698db4b09009258ae749d014deca0d
+commandlineoptions:97d170e1550eee4afc0af065b78cda302a97674c
+suitesfrom:no-suites-from-option
+file:480b333e1b8e2c195927fc761b242e31ec16ea1a
+--suite Webelements.Checkbox
+--suite Webelements.Dropdown
+--suite Webelements.Input Field
+--suite Webelements.Radio Buttons
+--suite Webelements.Table

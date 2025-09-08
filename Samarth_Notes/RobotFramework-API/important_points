@@ -1,0 +1,75 @@
+Rest API Request Methods
+==========================
+- GET(To fetch the resource i.e. data/record from db)
+- POST(To add a new resource)
+- PUT(To add a new resource or update the existing resource)
+- DELETE(To delete the existing resource)
+
+GET
+==========
+M - url(Base_URL+Path+Endpoint)
+O- params(query params as a dic), usually in manual request query params in url will be like ?key=value&key=value etc..
+
+Validation
+------------
+status_code(200)
+response json
+
+
+POST
+=========
+M- url(Base_URL+Path+Endpoint)
+M - json(as a dic or JSON format)
+O - headers(token)
+
+Note : No need to pass 'Content-Type' in headers, it will be auto taken
+
+
+Validation
+------------
+status_code(201)
+response json
+
+
+PUT
+=====
+M - url(Base_URL+Path+Endpoint/ID captured from post response)
+M - json(as a dic or JSON format, the json will be same as of POST but with updated data)
+O - headers(token)
+
+validation
+-------------
+status_code(200)
+response json
+
+Delete
+==========
+M - url(Base_URL+Path+Endpoint/ID captured from post/put response)
+o - params
+
+validation
+----------
+status_code(204)
+
+Note :
+- The important parameters/arguments that I can pass to requests keywords are url, json/data, headers, cookies, auth & timeout(how much time to wait for the server response before giving up, by default it is set to a reasonable time, no need to add it generally).
+- The API response will have the following imp components
+status_code,json(),headers & cookies
+
+Response objects
+=================
+response.status_code
+
+response.json() - It will return the parsed response JSON
+
+response.headers & response.cookies both will be in the dic form only, so I can directly use them.
+
+How to check the status
+========================
+- If the expected_status parameter is used with the requests keywords, then it will be checked there, if it's not used no valiadtion is done at that level.
+- status should be  201  response
+
+Json file path
+==============
+The path can abs path with '/' slahes or it can be relative to project, as for Resourse in settings
+

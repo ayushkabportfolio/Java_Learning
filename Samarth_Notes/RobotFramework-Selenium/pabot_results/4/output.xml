@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.3 on win32)" generated="2024-04-07T15:55:43.249408" rpa="false" schemaversion="5">
+<suite id="s1" name="Webelements" source="C:\Users\samarth.kulkarni\PycharmProjects\RobotFramework-Selenium\webelements">
+<suite id="s1-s1" name="Table" source="C:\Users\samarth.kulkarni\PycharmProjects\RobotFramework-Selenium\webelements\table.robot">
+<test id="s1-s1-t1" name="handle table" line="5">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:55:43.544640" level="INFO">Opening browser 'chrome' to base url 'https://www.letskodeit.com/practice'.</msg>
+<arg>https://www.letskodeit.com/practice</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-07T15:55:43.544640" elapsed="19.416165"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-04-07T15:56:02.960805" elapsed="0.204430"/>
+</kw>
+<kw name="Get Element Count" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:03.220475" level="INFO">${rows} = 4</msg>
+<var>${rows}</var>
+<arg>//table/tbody/tr</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.166616" elapsed="0.053859"/>
+</kw>
+<kw name="Get Element Count" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:03.252754" level="INFO">${columns} = 3</msg>
+<var>${columns}</var>
+<arg>(//table/tbody/tr)[1]/th</arg>
+<doc>Returns the number of elements matching ``locator``.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.224070" elapsed="0.028684"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${rows}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.252754" elapsed="0.002286"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-04-07T15:56:03.256538" level="INFO">3</msg>
+<arg>${columns}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.256063" elapsed="0.000910"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:03.313650" level="INFO">${ele_text} = Python Programming Language</msg>
+<var>${ele_text}</var>
+<arg>((//table/tbody/tr)[3]/td)[2]</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.257042" elapsed="0.057631"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${ele_text}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.314673" elapsed="0.000977"/>
+</kw>
+<kw name="Get Element Attribute" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:03.356580" level="INFO">${class_value} = course-name</msg>
+<var>${class_value}</var>
+<arg>((//table/tbody/tr)[3]/td)[2]</arg>
+<arg>class</arg>
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.315650" elapsed="0.040930"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-04-07T15:56:03.358584" level="INFO">course-name</msg>
+<arg>${class_value}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.357586" elapsed="0.000998"/>
+</kw>
+<kw name="Table Header Should Contain" owner="SeleniumLibrary">
+<arg>//table[@id='product']</arg>
+<arg>Course</arg>
+<doc>Verifies table header contains text ``expected``.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.359587" elapsed="0.134013"/>
+</kw>
+<kw name="Table Column Should Contain" owner="SeleniumLibrary">
+<arg>//table[@id='product']</arg>
+<arg>2</arg>
+<arg>Course</arg>
+<doc>Verifies table column contains text ``expected``.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.494443" elapsed="0.080266"/>
+</kw>
+<kw name="Table Row Should Contain" owner="SeleniumLibrary">
+<arg>//table[@id='product']</arg>
+<arg>3</arg>
+<arg>30</arg>
+<doc>Verifies that table row contains text ``expected``.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.574873" elapsed="0.106819"/>
+</kw>
+<kw name="Table Cell Should Contain" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:03.850233" level="INFO">Table cell contains '25'.</msg>
+<arg>//table[@id='product']</arg>
+<arg>4</arg>
+<arg>3</arg>
+<arg>25</arg>
+<doc>Verifies table cell contains text ``expected``.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.681692" elapsed="0.169546"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-04-07T15:56:03.851238" elapsed="2.567983"/>
+</kw>
+<status status="PASS" start="2024-04-07T15:55:43.543287" elapsed="22.876415"/>
+</test>
+<status status="PASS" start="2024-04-07T15:55:43.288471" elapsed="23.131734"/>
+</suite>
+<status status="PASS" start="2024-04-07T15:55:43.264866" elapsed="23.157355"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Webelements">Webelements</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Table">Webelements.Table</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

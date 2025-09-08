@@ -1,0 +1,14 @@
+Way -1
+=========
+Right click inspect on disappearing element
+
+Way -2
+==========
+Pause execution (under source, pause execution first & then inspect)
+- This way will pause the execution, which I can use to get the locators for elements like popus which may disappear quickly.
+
+Way -3
+========
+CTRL+SHIFT+P --> type focus --> click Emulate a focused page
+- This I can use of mouse hover appearing elements.
+- It should be used when Way 1 doesn't work.

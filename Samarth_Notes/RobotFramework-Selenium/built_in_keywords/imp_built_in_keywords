@@ -1,0 +1,34 @@
+catenate
+continue for loop if
+exit for loop if
+create list
+create dictionary
+Fail
+Log
+Log to console
+sleep
+
+
+run keyword
+run keywords
+run keyword and continue on failure
+run keyword and return status
+run keyword if
+wait until keyword succeeds
+
+set variable(If I want to manually set some value)
+set test variable
+set suite variable
+set global variable
+set tags(can used while doing data driven testing)
+
+should be empty & should not be empty
+should be equal & should not be equal
+should be equal as string & not
+should be equal as numbers & not
+should be true & should not be true.
+should contain & should not contain
+should contains any & not
+should end with & not
+should stat with & not
+should match & should not match(Here I can use pattern)
