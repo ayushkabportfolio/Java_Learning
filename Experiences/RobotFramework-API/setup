@@ -1,0 +1,13 @@
+- Python
+- Pycharm
+- robotframework library
+- robotframework-requests(imported in suite as 'RequestsLibrary')
+- robotframework-jsonlibrary
+- requests library to work with python
+- collections library
+
+pip install <lib>
+pip install --upgrade<lib>
+pip uninstall <lib>
+
+the above commands can be executed in any path in cmd

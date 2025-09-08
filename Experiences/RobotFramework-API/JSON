@@ -1,0 +1,33 @@
+- JSON - Java Script Object Notation
+- It is format to store and exchange data i.e. to send to API as a request and also API returns the data base in JSON format as a response.
+- The data is stored in the form of key:value pair seperated a comma
+- REST APIs will accept and give JSON data, whereas SOAP API will expect XML type of data.
+
+Ex :
+{
+    "name": "Samarth",
+    "age": "25",
+    "skills": [
+        "python",
+        "manual testing",
+        "sql"
+    ],
+    "skills experience": {
+        "python": "3",
+        "manual testing": "2",
+        "sql": "2.5"
+    }
+}
+
+Note :
+- The key & value(str values) should be in "", not in ''
+- Each key can i have one value or more than one .i.e. array & also can have JSON object etc..
+- In JSON bool values will be true and false in python True and False
+- In JSON null but in Python None
+- In JSON "" for all str values, in python '' or "" .,
+- In JSON 'JSON Object' in python dic
+- IN JOSN array in python list
+
+JSON Path
+===========
+It is the path of a particular key in the JSON data.

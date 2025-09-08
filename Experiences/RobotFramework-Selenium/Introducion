@@ -1,0 +1,5 @@
+- Robot Framework is a 'Test Automation Framework'
+- It provides different libraries which have keywords.
+- It uses keyword driven approach for automation.
+- The keyword provided will be written in python or java in backend.
+- But no programming is required to work with robot framework.

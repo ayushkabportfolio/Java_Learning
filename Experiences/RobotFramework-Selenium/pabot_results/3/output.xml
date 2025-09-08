@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.3 on win32)" generated="2024-04-07T15:55:43.259403" rpa="false" schemaversion="5">
+<suite id="s1" name="Webelements" source="C:\Users\samarth.kulkarni\PycharmProjects\RobotFramework-Selenium\webelements">
+<suite id="s1-s1" name="Radio Buttons" source="C:\Users\samarth.kulkarni\PycharmProjects\RobotFramework-Selenium\webelements\radio_buttons.robot">
+<test id="s1-s1-t1" name="Handle Radiobuttons" line="8">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:55:43.557870" level="INFO">Opening browser 'chrome' to base url 'https://www.letskodeit.com/practice'.</msg>
+<arg>https://www.letskodeit.com/practice</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-07T15:55:43.557369" elapsed="20.818643"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2024-04-07T15:56:04.376514" elapsed="0.212845"/>
+</kw>
+<kw name="Page Should Contain Radio Button" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:04.675376" level="INFO">Current page contains radio button '//input[@id='benzradio']'.</msg>
+<arg>//input[@id='benzradio']</arg>
+<doc>Verifies radio button ``locator`` is found from current page.</doc>
+<status status="PASS" start="2024-04-07T15:56:04.589859" elapsed="0.086539"/>
+</kw>
+<kw name="Radio Button Should Not Be Selected" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:04.678163" level="INFO">Verifying radio button 'cars' has no selection.</msg>
+<arg>cars</arg>
+<doc>Verifies radio button group ``group_name`` has no selection.</doc>
+<status status="PASS" start="2024-04-07T15:56:04.676784" elapsed="0.101671"/>
+</kw>
+<kw name="Select Radio Button" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:04.779693" level="INFO">Selecting 'benz' from radio button 'cars'.</msg>
+<arg>cars</arg>
+<arg>benz</arg>
+<doc>Sets the radio button group ``group_name`` to ``value``.</doc>
+<status status="PASS" start="2024-04-07T15:56:04.778953" elapsed="0.202516"/>
+</kw>
+<kw name="Radio Button Should Be Set To" owner="SeleniumLibrary">
+<msg time="2024-04-07T15:56:04.983467" level="INFO">Verifying radio button 'cars' has selection 'benz'.</msg>
+<arg>cars</arg>
+<arg>benz</arg>
+<doc>Verifies radio button group ``group_name`` is set to ``value``.</doc>
+<status status="PASS" start="2024-04-07T15:56:04.982474" elapsed="0.077689"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-07T15:56:08.061633" level="INFO">Slept 3 seconds.</msg>
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-07T15:56:05.061169" elapsed="3.000464"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-04-07T15:56:08.062135" elapsed="4.358609"/>
+</kw>
+<status status="PASS" start="2024-04-07T15:55:43.555148" elapsed="28.866033"/>
+</test>
+<status status="PASS" start="2024-04-07T15:55:43.299471" elapsed="29.123282"/>
+</suite>
+<status status="PASS" start="2024-04-07T15:55:43.276793" elapsed="29.151740"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Webelements">Webelements</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Radio Buttons">Webelements.Radio Buttons</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

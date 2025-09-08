@@ -1,0 +1,27 @@
+pip install <lib>
+pip install --upgrade<lib>
+pip uninstall <lib>
+
+the above commands can be executed in any path in cmd
+
+- Python
+- Pycharm IDE
+- Robotframework in File --> Settings --> Project --> Python Interpretor, if I install by pip it will not be considered in project, since project uses the virtual env.
+- Robotframework-selenium library
+- Intellibot for showing suggestions & different different colours in code & it also offers some other features.
+
+Note : just selenium library is required to work with python in robotframework, else not required.
+
+Libraries
+===========]
+Data driven testing
+-------------------
+- robotframework-datadriver imported as DataDriver library for data driven testing
+- plugin : CSV Editor to work with csv files
+
+Parallel Execution
+----------------
+robotframework-pabot for parallel tests execution.
+After run:
+- Total Testing Time : 1st test execution time + 2nd + 3rd ...
+- Elasped time : parallel execution time

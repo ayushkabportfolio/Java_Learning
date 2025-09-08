@@ -1,0 +1,16 @@
+*** Settings ***
+In this section we will specify the libraries to be imported
+    Library   LibraryName
+
+*** Variables ***
+This section will have variables
+    ${var_name}    value
+
+*** Test Cases ***
+This section will have testcases with test steps
+
+*** Keywords ***
+This section will have user defined keywords made with the existing keywords.
+
+Note:
+- here only 'Test Cases' section is mandatory

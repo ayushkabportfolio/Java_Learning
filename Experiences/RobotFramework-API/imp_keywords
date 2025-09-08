@@ -1,0 +1,13 @@
+create session
+GET
+POST
+PUT
+PATCH
+DELETE
+get on session
+post on session
+put on session
+patch on session
+delete on session
+delete all sessions
+status should be

@@ -1,0 +1,35 @@
+*** Settings ***
+Library    SeleniumLibrary
+
+*** Variables ***
+${input_field}    //input[@id='autosuggest']
+
+*** Test Cases ***
+Handling input field
+    open browser    https://www.letskodeit.com/practice    chrome
+    maximize browser window
+
+    # 1
+    page should contain textfield    ${input_field}
+    # page should contain element    ${input_field}
+    # should not contain keyword option is also there.
+
+   # 2
+   element should be visible    ${input_field}
+   # not visible option is also there
+
+   # 3
+   element should be enabled    ${input_field}
+   # disabled option is also there
+
+   # 4. input text
+    input password    ${input_field}    Samarth    # by default clears the existing text in input field.
+    sleep    3
+
+    # input password will not log the password value in logs/report
+
+    # 5
+    clear element text    ${input_field}
+    sleep    3
+
+    close browser

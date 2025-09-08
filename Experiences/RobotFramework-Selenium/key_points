@@ -1,0 +1,4 @@
+- Path where I need to place the drivers
+    C:\Users\samarth.kulkarni\AppData\Local\Programs\Python\Python311\Scripts
+
+- I need to place driver in scripts folder & this scripts path should be added path system variable, to avoid creating the webdriver in every script.
