@@ -1,0 +1,14 @@
+Here are the questions extracted from the currently open file `Questions%20to%20siolve/Interview%20questions.py`:
+
+1. Swap first and last element of a list
+2. Swap 2 numbers
+3. Sum of all elements in the array
+4. Print the list by keep on adding the elements
+5. Length of the list and strings
+6. Star pattern
+7. Print the list in reverse order
+8. Reverse the string
+9. Second largest number
+10. remove duplicates from the list
+11. check if the list is empty
+12.reverse the words in string
