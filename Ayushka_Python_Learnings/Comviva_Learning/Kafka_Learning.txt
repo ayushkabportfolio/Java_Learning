@@ -1,0 +1,1536 @@
+C:\Eclipse_SDET\Learning\Ayushka_Python_Learnings\Comviva_Learning
+Refer:
+https://docs.comviva.com/display/~biswajit.kumar1/Kafka+Connect+Installation+Manual
+
+=============START & STOP KAFKA=======================================
+
+Stop the kafka nd zookeeper by killing the pid,
+
+Note: If the kafka start fails, delete the data from /tmp/kafka-logs and even the zookeeper.
+and delete the logs from /opt/kafkconnect/confluent-6.1.0/logs
+
+cd /opt/kafkconnect/confluent-6.1.0/
+--To Run Kafka,
+bin/kafka-server-start -daemon ../config/server.properties 
+
+--To run schema registry
+bin/schema-registry-start -daemon ../config/schema-registry.properties
+
+
+Checking port in vch its running,
+
+[pgdb@172 logs]$ ps -eaf | grep kafka
+root      3472     1  2 16:11 pts/1    00:00:52 /usr/local/jdk1.8.0_211/bin/java -Xms256M -Xmx2G -server -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:+ExplicitGCInvokesConcurrent -XX:MaxInlineLevel=15 -Djava.awt.headless=true -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dkafka.logs.dir=/opt/kafkconnect/confluent-6.1.0/bin/../logs -Dlog4j.configuration=file:bin/../etc/kafka/connect-log4j.properties -cp /opt/kafkconnect/confluent-6.1.0/share/java/kafka/*:/opt/kafkconnect/confluent-6.1.0/share/java/confluent-common/*:/opt/kafkconnect/confluent-6.1.0/share/java/kafka-serde-tools/*:/opt/kafkconnect/confluent-6.1.0/bin/../share/java/kafka/*:/opt/kafkconnect/confluent-6.1.0/bin/../share/java/confluent-telemetry/* org.apache.kafka.connect.cli.ConnectStandalone ../config/connect-avro-standalone.properties ./etc/kafka/connect-console-sink.properties
+
+--To run connect
+bin/connect-standalone -daemon ../config/connect-avro-standalone.properties ./etc/kafka/connect-console-sink.properties
+
+
+--To start the zookeeper
+bin/zookeeper-server-start -daemon ../config/zookeeper.properties
+
+Check schemas running in 106:
+-->PostMan
+http://172.25.37.106:8081/subjects/ 
+
+Check connectors running in 106
+-->PosrMan
+http://172.25.37.106:8083/connectors/
+
+Checking port in vch its running,
+
+-->[pgdb@172 logs]$ ps -eaf | grep kafka
+root      3472     1  2 16:11 pts/1    00:00:52 /usr/local/jdk1.8.0_211/bin/java connect-avro-standalone.properties ./etc/kafka/connect-console-sink.properties
+
+-->[root@172 ~]# sudo netstat -tulpan|grep 3472
+tcp6       0      0 :::8083                 :::*                    LISTEN      3472/java
+
+-->Port its running in 8083
+
+--To check the logs of kafka
+/opt/kafkconnect/confluent-6.1.0/logs
+
+server.log -> kafka
+zookeeper.out -> zookeeper
+schema-registry -> schemaregistry
+
+nohup ./bin/kafka-server-start ./etc/kafka/server.properties &
+
+
+==============RUN PRODUCER CONSUMER=============================
+cd /opt/kafkconnect/confluent-6.1.0/ {cd /opt/kafka 12 something/bin}
+
+--To knw the topics running
+ bin/kafka-topics --list --bootstrap-server 172.25.37.106:9092
+bin/kafka-topics --list --bootstrap-server 172.25.36.238:9092
+
+
+PVGSINGLESTOREENBATOPICSS
+--Then run consumer  or producer as required
+
+./bin/kafka-console-producer --broker-list 10.0.1.199:9092 --topic 'TemplateCreateUpdateSL'
+
+/bin/kafka-console-producer --broker-list 172.25.37.182:9092 --topic 'REWARDSTOPIC'
+
+./bin/kafka-console-consumer --bootstrap-server 10.0.1.199:9092 --topic 'TemplateCreateUpdateSL'
+
+./bin/kafka-console-consumer --bootstrap-server 10.220.39.55:9093 --topic 
+'REWARDSTOPIC'
+
+./bin/kafka-console-producer --bootstrap-server 172.25.37.106:9092 --topic 'RELEASEenbaRT'
+
+./bin/kafka-consumer-groups.sh --bootstrap-server 172.19.10.169:9092 --describe --group RechargeInput-topic03
+
+ ./bin/kafka-console-producer --broker-list 172.25.37.106:9092 --topic 'SMSTOPICSS'
+
+./bin/kafka-console-consumer  --bootstrap-server 172.25.36.238:9092 --topic 'SMSTOPICSS'
+
+a 
+./bin/kafka-topics --list --bootstrap-server 172.21.11.200:9090
+
+bin/kafka-console-consumer --bootstrap-server=172.21.11.200:9090  --topic OPTUSPRODECMPBATCH 
+
+./bin/kafka-console-producer --bootstrap-server 172.21.11.200:9090 --topic OPTUSUATECMPTOPICSS 
+
+
+http://172.25.36.238:8083
+
+172.21.11.200
+
+=====================================================
+nohup ./bin/kafka-server-start.sh ./config/server.properties & kafka start /opt/kafaka
+
+nohup ./bin/kafka-manager & kafaka-manager start /opt/kafaka-manager
+
+python EREDEVENTProcessor START & /opt/emagine/ERED/bin/ path
+
+python CSVProcessorHighLatency START /opt/emagine/ERED/bin/
+
+
+[Note: delete all the logs and then start the zookeeper, as it vl look fr backup in those]
+cd /opt/zookeeper-3.4.13
+nohup ./bin/zkServer.sh start & zookeeper start first zookeeper need to start
+
+
+cd /opt/kafka-manager-1.3.1.6/conf
+Change the zookeeper host name in application.conf
+then start the kafka manager
+remove RUNNING_PID file if exists
+nohup ./bin/kafka-manager &
+
+sh ./bin/start.sh & /opt/tomcat/apache/
+
+==============KAFKA UI(Start if it goes down)==========================================
+
+IP: http://172.25.36.238:3600/
+
+Go to 238 server
+
+Run the below command to create the container
+
+docker run -p 3600:8080	 \
+	-e KAFKA_CLUSTERS_0_NAME=PVG_Kafka \
+	-e KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=172.25.37.106:9092 \
+	-d provectuslabs/kafka-ui:latest
+
+
+	docker run -p 3600:8080 \
+	-e KAFKA_CLUSTERS_0_NAME=PVG_Kafka \
+	-e KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=172.25.37.106:9092 \
+	-d provectuslabs/kafka-ui:latest
+
+docker container stop bbd8efcc170b
+To check if its running:
+
+docker ps -a
+----It should look like this 
+CONTAINER ID   IMAGE                           COMMAND                  CREATED         STATUS         PORTS                                                                                  NAMES
+fd80bb928941   provectuslabs/kafka-ui:latest   "/bin/sh -c 'java $J…"   4 seconds ago   Up 2 seconds   0.0.0.0:3600->8080/tcp, :::3600->8080/tcp                                              gallant_heisenbe
+
+Note:  IF the UI is down, check if the container is up, If the status is exited
+Run the below command
+
+-->docker container start Container ID
+eg:docker container start fd80bb928941
+
+If the container is not existing, run the create container command.
+
+=================VOLTDB START STOP=================================
+GO to the path:
+cd /opt/voltdb-community-8.2/bin/
+
+To shutdown:
+./voltadmin shutdown --save
+
+ps -eaf | grep volt (if volt is still running after shutdown.Force kill the volt)
+
+--voltdb init --dir=./voltdbroot/ (Not Required)(for deleting the data)
+
+To start:
+
+nohup voltdb start --http 8080 &
+
+delete nohup.out in bin.(writes more log)
+
+If automatically shuts done and gives error related to below, then run the below in bin path
+
+sudo bash -c "echo never > /sys/kernel/mm/transparent_hugepage/enabled"
+sudo bash -c "echo never > /sys/kernel/mm/transparent_hugepage/defrag"
+
+=============CREATE TOPIC IN KAFKA=========================
+
+Creating the topic:(kafka shld be running)
+From Confluent path:
+/opt/kafkconnect/confluent-6.1.0
+
+./bin/kafka-topics --create --topic MDMDTEST --bootstrap-server 172.25.37.106:9092
+
+--deleting
+
+./bin/kafka-topics --delete --topic MDMDTEST --bootstrap-server 172.25.37.106:9092
+
+
+-----LDAP goes down------
+
+IP: 172.25.36.238 (user  pass : same as 157 server)
+cd /data/Comviva/shreyans
+
+To check status :
+docker ps
+
+to start ldap :
+./docker-compose up -d 
+
+================================SERVER PROPERTIES DOWN======================================
+
+1. forcefully kill the kafka and zookeeper is any instances are running 
+2. delete the contents in this path cd /tmp/zookeeper/version-2/. this path would contains zookeepers internal snaphot log file which prevents starting zoo. 
+3. cd /tmp/kafka-logs/  in this path delete the meta.properties file. This file would be having the previous instace ID which would cause mismatch while restart.
+4. start the zookeper and karka in the below order in path cd /opt/kafkconnect/confluent-6.1.0/
+nohup ./bin/zookeeper-server-start ./etc/kafka/zookeeper.properties &
+nohup ./bin/zookeeper-server-start ./etc/kafka/zookeeper_otn.properties &
+nohup ./bin/kafka-server-start ./etc/kafka/server.properties &
+nohup ./bin/schema-registry-start ./etc/schema-registry/schema-registry.properties &
+nohup ./bin/connect-standalone ./etc/schema-registry/connect-avro-standalone.properties ./etc/kafka/connect-file-sink.properties &
+
+
+
+---------------------------------------------------------------------------------------------
+
+came across a useful command, This command lists the top 10 processes consuming the most memory.
+ 
+ps aux --sort -rss | head -n 10
+
+It will list all the PID with the memo use along with command which is running
+
+
+===========================================================================================
+
+To check nodes:
+
+netstat -tunlp | grep 9092
+
+--------------------------------------------------------------------------------------------
+Command:
+========
+
+./bin/kafka-topics --create --topic TRY --bootstrap-server 172.25.37.106:9092 --partitions 1 --replication-factor 1
+
+==========================================
+
+
+
+Skip to:
+Top Bar
+Sidebar
+Main Content
+;
+
+
+Search
+
+Create
+
+Rovo Chat
+
+9+
+
+
+
+Back to top
+Search by title
+
+Biswajit Kumar1
+/
+Kafka Connect Installation Manual
+Ayushka Bhattacharya
+
+
+
+
+
+Share
+
+
+Kafka Connect Installation Manual
+
+
+
+By Former user (Deleted)
+Jan 31, 2024
+
+30
+
+thumbs up
+1
+Legacy editor
+Export
+Export
+Installation
+Info Available at : https://docs.confluent.io/platform/current/installation/installing_cp/zip-tar.html
+ Download confluent-6.1.1 Community Edition : https://packages.confluent.io/archive/6.1/confluent-community-6.1.1.tar.gz
+ export CONFLUENT_HOME=<path-to-confluent>
+ export PATH=$PATH:$CONFLUENT_HOME/bin
+ Download Confluent CLI : https://s3-us-west-2.amazonaws.com/confluent.cloud/confluent-cli/archives/latest/confluent_latest_linux_amd64.tar.gz
+ export CONFLUENT=<path-to-confluent-cli>
+Download Conflunet Hub: http://client.hub.confluent.io/confluent-hub-client-latest.tar.gz
+ export CONFLUENT_HUB_HOME=<path-to-confluent-hub>/bin
+Install JDBC Connector → Run command on terminal : confluent-hub install confluentinc/kafka-connect-jdbc:10.6.3
+ Installation  Complete
+Standalone Configuration
+vim <path-to-confluent-home>/etc/schema-registry/schema-registry.properties
+#edit property :
+listeners=http://<internal-server-ip>:<port>
+host.name=<hostname> or <IP>
+#Comma seperated kaka server:port for kafka running in cluster
+kafkastore.bootstrap.servers=PLAINTEXT://<Kafka_IP>:<Kafak_Port>
+# The name of the topic to store schemas in
+kafkastore.topic=_schemas
+
+      2. vim <path-to-confluent>/etc/schema-registry/connect-avro-standalone.properties
+
+#edit property :
+bootstrap.servers=<Kafka_IP>:<Kafak_Port>
+rest.host.name=<Server_Public_IP> or <Server_Private_IP> or localhost/0.0.0.0
+rest.port=<unique rest port number>
+
+ key.converter=org.apache.kafka.connect.storage.StringConverter
+# value should be same as listeners configured in schema-registry.properties
+key.converter.schema.registry.url=http://schema-registry-url:port
+value.converter=io.confluent.connect.avro.AvroConverter
+value.converter.schema.registry.url=http://schema-registry-url:port
+
+plugin.path=/usr/share/java,<path-to-confluent>/share/confluent-hub-components
+
+       3. Create a new connect-sink property file :  vim <path-to-confluent>/etc/kafka/etc/kafka/enba-sink.properties
+
+sample data given below
+
+       4. Configuration Complete
+
+Distributed Configuration
+vim <path-to-confluent-home>/etc/schema-registry/schema-registry1.properties
+#edit property :
+listeners=http://<internal-server-ip>:<port> 
+host.name=<hostname> or <IP>
+kafkastore.bootstrap.servers=PLAINTEXT://<Kafka_IP>:<Kafak_Port>
+# The name of the topic to store schemas in
+kafkastore.topic=_schemas
+
+ schema.registry.group.id=MRTM-Cluster1
+
+  leader.eligibility=true
+
+       2. vim <path-to-confluent-home>/etc/schema-registry/schema-registry2.properties
+
+#edit property :
+listeners=http://<internal-server-ip>:<port>
+host.name=<hostname> or <IP>
+kafkastore.bootstrap.servers=PLAINTEXT://<Kafka_IP>:<Kafak_Port>
+# The name of the topic to store schemas in
+kafkastore.topic=_schemas
+
+               schema.registry.group.id=MRTM-Cluster1
+
+               leader.eligibility=true
+
+      3. vim <path-to-confluent>/etc/kafka/connect-distributed1.properties
+
+#edit property :
+
+#unique name for the cluster, used in forming the Connect cluster group. Note that this must not conflict with consumer group IDs
+group.id=connect-cluster
+
+bootstrap.servers=<Kafka_IP>:<Kafak_Port>
+rest.host.name=<Server_Public_IP> or <Server_Private_IP> or localhost/0.0.0.0
+rest.port=<unique rest port number>
+
+ key.converter=org.apache.kafka.connect.storage.StringConverter
+# value should be same as listeners configured in schema-registry.properties (Comma seperated url if in distributed mode)
+key.converter.schema.registry.url=http://schema-registry-url:port
+value.converter=io.confluent.connect.avro.AvroConverter
+value.converter.schema.registry.url=http://schema-registry-url:port
+
+plugin.path=/usr/share/java,<path-to-confluent>/share/confluent-hub-components
+
+     4. vim <path-to-confluent>/etc/kafka/connect-distributed2.properties
+
+#edit property :
+
+ #unique name for the cluster, used in forming the Connect cluster group. Note that this must not conflict with consumer group IDs
+ group.id=connect-cluster
+
+bootstrap.servers=<Kafka_IP>:<Kafak_Port>
+rest.host.name=<Server_Public_IP> or <Server_Private_IP> or localhost/0.0.0.0
+rest.port=<unique rest port number>
+
+ key.converter=org.apache.kafka.connect.storage.StringConverter
+# value should be same as listeners configured in schema-registry.properties
+key.converter.schema.registry.url=http://schema-registry-url:port
+value.converter=io.confluent.connect.avro.AvroConverter
+value.converter.schema.registry.url=http://schema-registry-url:port
+
+plugin.path=/usr/share/java,<path-to-confluent>/share/confluent-hub-components
+
+   5. Create a new connect-sink property file :  vim <path-to-confluent>/etc/kafka/etc/kafka/enba-sink.properties
+       
+                Sample Data : Kafka Connect Installation Manual
+
+  6. Configuration Complete
+
+CONFLUENT_HOME Setup
+export CONFLUENT_HOME=<confluent-home-path>
+export CONFLUENT_HUB_HOME=<confluent-hub-home-path>bin
+export CONFLUENT=<confluent-cli-path>
+export PATH="${CONFLUENT_HOME}:${CONFLUENT_HUB_HOME}/bin:${CONFLUENT}:$PATH"
+Start & Stop Commands
+Standalone Manual Start
+nohup ./bin/zookeeper-server-start ./etc/kafka/zookeeper.properties &
+nohup ./bin/kafka-server-start ./etc/kafka/server.properties &
+nohup ./bin/schema-registry-start ./etc/schema-registry/schema-registry.properties &
+nohup ./bin/connect-standalone ./etc/schema-registry/connect-avro-standalone.properties ./etc/kafka/connect-file-sink.properties &
+
+Distributed Manual Start
+nohup ./bin/zookeeper-server-start ./etc/kafka/zookeeper.properties &
+nohup ./bin/kafka-server-start ./etc/kafka/server.properties &
+nohup ./bin/schema-registry-start ./etc/schema-registry/schema-registry1.properties&
+nohup ./bin/schema-registry-start ./etc/schema-registry/schema-registry2.properties&
+nohup ./bin/connect-distributed ./etc/kafka/connect-distributed1.properties &
+nohup ./bin/connect-distributed ./etc/kafka/connect-distributed2.properties &
+Configuration to be done
+For Kafka connect 
+We need to configure connect-standlone/connect-distributes properties and start kafka connect.
+Then We have a option to configure connectors via rest api or properties file so any one option can be used
+Both options details are mentioned below
+For  Schema-Registry
+It should only be started after configuring schema-registry properteis
+We are not required to create schema's manually 
+Schemas are automatically created when campaign data is pushed
+Below rest api is provided for schema registry as a sample to execute in case of any error or any other difficulties.
+ We need to update the schema compatablity to none since for every new binary of application provided , new schema gets registered and error will come during schema registry regarding compatablity.
+curl -X PUT -H "Content-Type: application/vnd.schemaregistry.v1+json" \
+> --data '{"compatibility": "NONE"}' \
+> http://<schema-registry-url>:<schema-registry-port>/config
+
+
+
+Schema Registry
+Register new schema
+curl -X POST http://localhost:8081/subjects/enba-value/versions -H "Content-Type: application/vnd.schemaregistry.v1+json" \
+--data '{"schema":"{\"type\":\"record\",\"name\":\"Enbalog\",\"namespace\":\"com.comviva.kafkaconnect\",\"fields\":[{\"name\":\"TRANSACTION_ID\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"},{\"name\":\"MSISDN\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"},{\"name\":\"TRIGGER_NAME\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"},{\"name\":\"W_ID\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"},{\"name\":\"STEP\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"},{\"name\":\"REWARD_ID\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"},{\"name\":\"CAM_ID\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"},{\"name\":\"STATUS\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"},{\"name\":\"COMMENTS\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"},{\"name\":\"CCR_JSON\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"},{\"name\":\"DATE_TIME\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"},\"avro.java.string\":\"String\"}]}"}'
+
+Retrive all schemas
+curl -X GET http://localhost:8081/subjects
+curl -X GET http://localhost:8081/subjects/enba-value/versions
+curl -X GET http://localhost:8081/subjects/eredConnect-value/versions
+
+Delete a existing schema
+curl -X DELETE http://localhost:8081/subjects/enba-value
+curl -X DELETE http://localhost:8081/subjects/eredConnect-value
+
+Kafka Connect Rest Service (here host:port are kafka connect rest service)
+Get list of connectors
+curl http://host:port/connectors
+Delete a connector
+curl -X DELETE http://host:port/connectors/<connector-name>
+Get connector configuration
+curl http://host:port/connectors/<connector-name>
+Get connector status
+curl http://host:port/connectors/<connector-name>/status
+Update Configuration of existing connector
+curl -H "Content-Type: application/json" -X PUT-d @<path-to-file>/<file-name-with-json-extension> http://host:port/connectors/<connector-name>/config
+Restart a conector
+curl -X POST http://host:port/connectors/<connector-name>/restart
+Pause a connector
+curl -X PUT http://host:port/connectors/<connector-name>/pause
+Resumt a connector
+curl -X PUT http://host:port/connectors/<connector-name>/resume
+Add a connector 
+curl -H "Content-Type: application/json" -X POST -d @<path-to-file>/<file-name-with-json-extension> http://host:port/connectors
+Sample JSON for Posting new connector properties
+
+
+ Note
+      Add config for paritioned tables  "table.types": "PARTITIONED TABLE,TABLE"
+
+ered-sink
+{
+"name": "ered-sink-postgres",
+"config": {
+"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url":"jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user":"postgres",
+"connection.password":"postgres",
+"tasks.max":"1",
+"topics":"eredConnect",
+"insert.mode":"INSERT",
+"table.name.format":"ccap_ecmp.\"ERED_T_LOG\"",
+"auto.create":"false",
+"config.action.reload":"restart",
+"errors.tolerance":"all",
+"errors.log.enable":"true",
+"errors.log.include.messages":"true",
+"print.key":"true",
+"db.timezone":"Asia/Kolkata",
+"transforms":"creationTime,loadedTime,insertedTime",
+"transforms.creationTime.type":"org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.creationTime.target.type":"Timestamp",
+"transforms.creationTime.field":"CREATION_TIME",
+"transforms.creationTime.format":"yyyy-MM-ddHH:mm:ss",
+"transforms.loadedTime.type":"org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.loadedTime.target.type":"Timestamp",
+"transforms.loadedTime.field":"LOADED_TIME",
+"transforms.loadedTime.format":"yyyy-MM-ddHH:mm:ss",
+"transforms.insertedTime.type":"org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.insertedTime.target.type":"Timestamp",
+"transforms.insertedTime.field":"INSERTED_TIME",
+"transforms.insertedTime.format":"yyyy-MM-ddHH:mm:ss"
+}
+}
+
+
+"ered-early-event-sink
+
+{
+"name": "ered-early-event-sink-postgres",
+"config": {
+"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url":"jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user":"postgres",
+"connection.password":"postgres",
+"tasks.max":"1",
+"topics":"earyEventTopic",
+"insert.mode":"INSERT",
+"table.name.format":"ccap_ecmp.\"EARLY_EVENTS_LOG\"",
+"auto.create":"false",
+"config.action.reload":"restart",
+"errors.tolerance":"all",
+"errors.log.enable":"true",
+"errors.log.include.messages":"true",
+"print.key":"true",
+"db.timezone":"Asia/Kolkata"
+}
+}
+
+
+
+enba-sink
+
+{
+"name": "enba-sink-postgres",
+"config": {
+"connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+"errors.log.include.messages": "true",
+"table.name.format": "ccap_ecmp.\"ENBA_T_LOG\"",
+"connection.password": "postgres",
+"tasks.max": "1",
+"topics": "enba",
+"transforms": "timestamp",
+"transforms.timestamp.field": "DATE_TIME",
+"print.key": "true",
+"transforms.timestamp.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"connection.user": "postgres",
+"db.timezone": "Asia/Kolkata",
+"transforms.timestamp.target.type": "Timestamp",
+"name": "enba-sink-postgres",
+"errors.tolerance": "all",
+"auto.create": "false",
+"connection.url": "jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"config.action.reload": "restart",
+"insert.mode": "INSERT",
+"errors.log.enable": "true",
+"transforms.timestamp.format": "yyyy-MM-dd HH:mm:ss"
+}
+}
+
+ecmp-incoming-log-sink
+{
+"name": "ecmp-incoming-log-sink-postgres",
+"config": {
+"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url":"jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user":"postgres",
+"connection.password":"postgres",
+"tasks.max":"1",
+"topics":"ecmpIncomingConnect",
+"insert.mode":"INSERT",
+"table.name.format":"ccap_ecmp.\"ECMP_T_INCOMING_LOG\"",
+"auto.create":"false",
+"config.action.reload":"restart",
+"errors.tolerance":"all",
+"errors.log.enable":"true",
+"errors.log.include.messages":"true",
+"print.key":"true",
+"db.timezone":"Asia/Kolkata",
+"transforms":"eventTime",
+"transforms.eventTime.type":"org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.eventTime.target.type":"Timestamp",
+"transforms.eventTime.field":"EVENT_TIME",
+"transforms.eventTime.format":"yyyy-MM-ddHH:mm:ss"
+}
+}
+
+ecmp-incoming-sms-log-sink
+
+{
+"name": "ecmp-incoming-sms-log-sink-postgres",
+"config": {
+"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url":"jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user":"postgres",
+"connection.password":"postgres",
+"tasks.max":"1",
+"topics":"ecmpIncomingConnectSMS",
+"insert.mode":"INSERT",
+"table.name.format":"ccap_ecmp.\"ECMP_T_INCOMING_SMS_LOG\"",
+"auto.create":"false",
+"config.action.reload":"restart",
+"errors.tolerance":"all",
+"errors.log.enable":"true",
+"errors.log.include.messages":"true",
+"print.key":"true",
+"db.timezone":"Asia/Kolkata",
+"transforms":"eventTime",
+"transforms.eventTime.type":"org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.eventTime.target.type":"Timestamp",
+"transforms.eventTime.field":"EVENT_TIME",
+"transforms.eventTime.format":"yyyy-MM-ddHH:mm:ss"
+}
+}
+
+ecmp-error-log-sink
+
+{
+"name": "ecmp-error-log-sink-postgres",
+"config": {
+"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url":"jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user":"postgres",
+"connection.password":"postgres",
+"tasks.max":"1",
+"topics":"ecmpErrorConnect",
+"insert.mode":"INSERT",
+"table.name.format":"ccap_ecmp.\"ECMP_T_STAGING_ERROR\"",
+"auto.create":"false",
+"config.action.reload":"restart",
+"errors.tolerance":"all",
+"errors.log.enable":"true",
+"errors.log.include.messages":"true",
+"print.key":"true",
+"db.timezone":"Asia/Kolkata"
+}
+}
+
+
+
+ecmp-data-export-sink
+
+{"name":"ecmp-data-export-sink",
+"config":{
+"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url":"jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user":"postgres",
+"connection.password":"postgres",
+"tasks.max":"1",
+"topics":"ecmpDataExport",
+"insert.mode":"INSERT",
+"table.name.format":"ccap_ecmp.\"ECMP_T_DATA_EXPORT\"",
+"auto.create":"false",
+"config.action.reload":"restart",
+"errors.tolerance":"all",
+"errors.log.enable":"true",
+"errors.log.include.messages":"true",
+"print.key":"true",
+"db.timezone":"Asia/Kolkata",
+"transforms":" eventDate",
+"transforms.eventDate.type":" org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.eventDate.target.type":" Timestamp",
+"transforms.eventDate.field":" EVENT_DATE",
+"transforms.eventDate.format":" yyyy-MM-dd HH:mm:ss"
+}
+}
+
+comm-batch-export-sink
+
+{
+"name":"comm-batch-export-sink",
+"config":{
+"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url":"jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user":"postgres",
+"connection.password":"postgres",
+"tasks.max":"1",
+"topics":"commBatchExport",
+"insert.mode":"INSERT",
+"table.name.format":"ccap_ecmp.\"COMM_BATCH_EXPORT\"",
+"auto.create":"false",
+"config.action.reload":"restart",
+"errors.tolerance":"all",
+"errors.log.enable":"true",
+"errors.log.include.messages":"true",
+"print.key":"true",
+"db.timezone":"Asia/Kolkata",
+"transforms":" eventTime",
+"transforms.eventTime.type":" org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.eventTime.target.type":" Timestamp",
+"transforms.eventTime.field":" EVENT_TIME",
+"transforms.eventTime.format":" yyyy-MM-dd HH:mm:ss"
+}
+}
+
+available-offer-log-sink
+
+{
+"name":"available-offer-log-sink",
+"config":{
+"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url":"jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user":"postgres",
+"connection.password":"postgres",
+"tasks.max":"1",
+"topics":"availableOfferLog",
+"insert.mode":"INSERT",
+"table.name.format":"ccap_ecmp.\"IBH_T_AVAILABLE_OFFERS_LOG\"",
+"auto.create":"false",
+"config.action.reload":"restart",
+"errors.tolerance":"all",
+"errors.log.enable":"true",
+"errors.log.include.messages":"true",
+"print.key":"true",
+"db.timezone":"Asia/Kolkata",
+"transforms":" transactionDateTime",
+"transforms.transactionDateTime.type":" org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.transactionDateTime.target.type":" Timestamp",
+"transforms.transactionDateTime.field":" TRANSACTION_DATE_TIME",
+"transforms.transactionDateTime.format":" yyyy-MM-dd HH:mm:ss"
+}
+}
+
+fulfillment-log-sink
+
+{
+"name":"fulfillment-log-sink",
+"config":{
+"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url":"jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user":"postgres",
+"connection.password":"postgres",
+"tasks.max":"1",
+"topics":"fulfillmentLog",
+"insert.mode":"INSERT",
+"table.name.format":"ccap_ecmp.\"IBH_T_FULFILLMENT_LOG\"",
+"auto.create":"false",
+"config.action.reload":"restart",
+"errors.tolerance":"all",
+"errors.log.enable":"true",
+"errors.log.include.messages":"true",
+"print.key":"true",
+"db.timezone":"Asia/Kolkata",
+"transforms":" transactionDateTime",
+"transforms.transactionDateTime.type":" org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.transactionDateTime.target.type":" Timestamp",
+"transforms.transactionDateTime.field":" TRANSACTION_DATE_TIME",
+"transforms.transactionDateTime.format":" yyyy-MM-dd HH:mm:ss"
+}
+}
+
+
+
+fact history
+
+{
+"name": "ecmp-fact-postgres",
+"config": {
+"connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url": "jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user": "postgres",
+"connection.password": "postgres",
+"tasks.max": "1",
+"topics": "ecmpFactHistory",
+"insert.mode": "INSERT",
+"table.name.format": "ccap_ecmp.\"ECMP_T_FACT_HISTORY\"",
+"auto.create": "false",
+"config.action.reload": "restart",
+"errors.tolerance": "all",
+"errors.log.enable": "true",
+"errors.log.include.messages": "true",
+"print.key": "true",
+"db.timezone": "Asia/Kolkata",
+"transforms": "camEntry,stepEntry,stepExit",
+"transforms.camEntry.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.camEntry.target.type": "Timestamp",
+"transforms.camEntry.field": "CAM_ENTRY_DATE",
+"transforms.camEntry.format": "yyyy-MM-ddHH:mm:ss",
+"transforms.stepEntry.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.stepEntry.target.type": "Timestamp",
+"transforms.stepEntry.field": "STEP_ENTRY_DATE",
+"transforms.stepEntry.format": "yyyy-MM-ddHH:mm:ss",
+"transforms.stepExit.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.stepExit.target.type": "Timestamp",
+"transforms.stepExit.field": "STEP_EXIT_DATE",
+"transforms.stepExit.format": "yyyy-MM-ddHH:mm:ss",
+"name": "ecmp-fact-postgres"
+}
+}
+
+fact history entry exit
+{
+"name": "ecmp-fact-postgres_entry_exit",
+"config": {
+"connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url": "jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user": "postgres",
+"connection.password": "postgres",
+"tasks.max": "1",
+"topics": "ecmpFactHistoryEntryExit",
+"insert.mode": "INSERT",
+"table.name.format": "ccap_ecmp.\"ECMP_T_FACT_HISTORY_ENTRY_EXIT\"",
+"auto.create": "false",
+"config.action.reload": "restart",
+"errors.tolerance": "all",
+"errors.log.enable": "true",
+"errors.log.include.messages": "true",
+"print.key": "true",
+"db.timezone": "Asia/Kolkata",
+"transforms": "camEntry,stepEntry,stepExit",
+"transforms.camEntry.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.camEntry.target.type": "Timestamp",
+"transforms.camEntry.field": "CAM_ENTRY_DATE",
+"transforms.camEntry.format": "yyyy-MM-ddHH:mm:ss",
+"transforms.stepEntry.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.stepEntry.target.type": "Timestamp",
+"transforms.stepEntry.field": "STEP_ENTRY_DATE",
+"transforms.stepEntry.format": "yyyy-MM-ddHH:mm:ss",
+"transforms.stepExit.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.stepExit.target.type": "Timestamp",
+"transforms.stepExit.field": "STEP_EXIT_DATE",
+"transforms.stepExit.format": "yyyy-MM-ddHH:mm:ss",
+}
+}
+
+comm fact history
+
+{
+"name": "ecmp-cust-cam-comm-postgres",
+"config": {
+"connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url": "jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user": "postgres",
+"connection.password": "postgres",
+"tasks.max": "1",
+"topics": "ecmpCustCamCommHistory",
+"insert.mode": "INSERT",
+"table.name.format": "ccap_ecmp.\"ECMP_T_CUST_CAM_COMM_HISTORY\"",
+"auto.create": "false",
+"config.action.reload": "restart",
+"errors.tolerance": "all",
+"errors.log.enable": "true",
+"errors.log.include.messages": "true",
+"print.key": "true",
+"db.timezone": "Asia/Kolkata",
+"transforms": "generatedTime,sentTime,deliveredTime,retryAfterTime",
+"transforms.generatedTime.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.generatedTime.target.type": "Timestamp",
+"transforms.generatedTime.field": "GENERATED_TIME",
+"transforms.generatedTime.format": "yyyy-MM-dd HH:mm:ss",
+"transforms.sentTime.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.sentTime.target.type": "Timestamp",
+"transforms.sentTime.field": "SENT_TIME",
+"transforms.sentTime.format": "yyyy-MM-dd HH:mm:ss",
+"transforms.deliveredTime.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.deliveredTime.target.type": "Timestamp",
+"transforms.deliveredTime.field": "DELIVERED_TIME",
+"transforms.deliveredTime.format": "yyyy-MM-dd HH:mm:ss",
+"transforms.retryAfterTime.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.retryAfterTime.target.type": "Timestamp",
+"transforms.retryAfterTime.field": "RETRY_AFTER_TIME",
+"transforms.retryAfterTime.format": "yyyy-MM-dd HH:mm:ss"
+}
+}
+
+reward fact history
+
+{
+"name": "ecmp-cust-cam-reward-postgres",
+"config":{
+"connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url": "jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user": "postgres",
+"connection.password": "postgres",
+"tasks.max": "1",
+"topics": "ecmpCustCamRewardHistory",
+"insert.mode": "INSERT",
+"table.name.format": "ccap_ecmp.\"ECMP_T_CUST_CAM_REWARD_HISTORY\"",
+"auto.create": "false",
+"config.action.reload": "restart",
+"errors.tolerance": "all",
+"errors.log.enable": "true",
+"errors.log.include.messages": "true",
+"print.key": "true",
+"db.timezone": "Asia/Kolkata",
+"transforms": "rewardSentTime,responseTime",
+"transforms.rewardSentTime.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.rewardSentTime.target.type": "Timestamp",
+"transforms.rewardSentTime.field": "REWARD_SENT_TIME",
+"transforms.rewardSentTime.format": "yyyy-MM-dd HH:mm:ss",
+"transforms.responseTime.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.responseTime.target.type": "Timestamp",
+"transforms.responseTime.field": "RESPONSE_TIME",
+"transforms.responseTime.format": "yyyy-MM-dd HH:mm:ss"
+}
+}
+
+ecmp_t_cust_cam_comm_history_bulk_comm
+{
+"name": "bulksms-sink-postgres",
+"config": {
+"connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url": "jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user": "postgres",
+"connection.password": "postgres",
+"tasks.max": "1",
+"topics": "ecmpCustCamCommHistoryBulk",
+"insert.mode": "INSERT",
+"table.name.format": "ccap_ecmp.\"ECMP_T_CUST_CAM_COMM_HISTORY_BULK_COMM\"",
+"auto.create": "false",
+"config.action.reload": "restart",
+"errors.tolerance": "all",
+"errors.log.enable": "true",
+"errors.log.include.messages": "true",
+"print.key": "true",
+"db.timezone": "Asia/Kolkata",
+"transforms": "generatedTime,sentTime,deliveredTime",
+"transforms.generatedTime.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.generatedTime.target.type": "Timestamp",
+"transforms.generatedTime.field": "GENERATED_TIME",
+"transforms.generatedTime.format": "yyyy-MM-dd HH:mm:ss",
+"transforms.sentTime.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.sentTime.target.type": "Timestamp",
+"transforms.sentTime.field": "SENT_TIME",
+"transforms.sentTime.format": "yyyy-MM-dd HH:mm:ss",
+"transforms.deliveredTime.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.deliveredTime.target.type": "Timestamp",
+"transforms.deliveredTime.field": "DELIVERED_TIME",
+"transforms.deliveredTime.format": "yyyy-MM-dd HH:mm:ss"
+}
+}
+
+mrtm_t_bulk_comm_run_log
+{
+"name": "runlog-sink-postgres",
+"config": {
+"connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url": "jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user": "postgres",
+"connection.password": "postgres",
+"tasks.max": "1",
+"topics": "mrtmRunLog",
+"insert.mode": "INSERT",
+"table.name.format": "ccap_ecmp.\"MRTM_T_BULK_COMM_RUN_LOG\"",
+"auto.create": "false",
+"config.action.reload": "restart",
+"errors.tolerance": "all",
+"errors.log.enable": "true",
+"errors.log.include.messages": "true",
+"print.key": "true",
+"db.timezone": "Asia/Kolkata",
+"transforms": "generatedTime,runDate",
+"transforms.generatedTime.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.generatedTime.target.type": "Timestamp",
+"transforms.generatedTime.field": "GENERATED_TIME",
+"transforms.generatedTime.format": "yyyy-MM-dd HH:mm:ss",
+"transforms.runDate.type": "org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.runDate.target.type": "Timestamp",
+"transforms.runDate.field": "RUN_DATE",
+"transforms.runDate.format": "yyyy-MM-dd HH:mm:ss"
+}
+}
+
+Voucher History
+{
+"name": "voucher-history",
+"config": {
+"connector.class":"io.confluent.connect.jdbc.JdbcSinkConnector",
+"connection.url":"jdbc:postgresql://172.25.36.122:5432/redcloud7",
+"connection.user":"postgres",
+"connection.password":"postgres",
+"tasks.max":"1",
+"topics":"ecmpTVoucherHistory",
+"insert.mode":"INSERT",
+"table.name.format":"ccap_ecmp.\"ECMP_T_INCOMING_SMS_LOG\"",
+"auto.create":"false",
+"config.action.reload":"restart",
+"errors.tolerance":"all",
+"errors.log.enable":"true",
+"errors.log.include.messages":"true",
+"print.key":"true",
+"db.timezone":"Asia/Kolkata",
+"transforms":"voucherAllocationDate,voucherLoadDate,voucherCreatedDate,voucherExpiryDate",
+"transforms.voucherAllocationDate.type":"org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.voucherAllocationDate.target.type":"Timestamp",
+"transforms.voucherAllocationDate.field":"VOUCHER_ALLOCATION_DATE",
+"transforms.voucherAllocationDate.format":"yyyy-MM-ddHH:mm:ss",
+"transforms.voucherLoadDate.type":"org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.voucherLoadDate.target.type":"Timestamp",
+"transforms.voucherLoadDate.field":"VOUCHER_LOAD_DATE",
+"transforms.voucherLoadDate.format":"yyyy-MM-ddHH:mm:ss",
+"transforms.voucherCreatedDate.type":"org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.voucherCreatedDate.target.type":"Timestamp",
+"transforms.voucherCreatedDate.field":"VOUCHER_CREATED_DATE",
+"transforms.voucherCreatedDate.format":"yyyy-MM-ddHH:mm:ss",
+"transforms.voucherExpiryDate.type":"org.apache.kafka.connect.transforms.TimestampConverter$Value",
+"transforms.voucherExpiryDate.target.type":"Timestamp",
+"transforms.voucherExpiryDate.field":"VOUCHER_EXPIRY_DATE",
+"transforms.voucherExpiryDate.format":"yyyy-MM-ddHH:mm:ss"
+}
+}
+
+Related content
+
+Send feedback
+Kafka Connect manual Installation, Configuration and Troubleshoot Document
+Vijay Shankar Choudhary
+Kafka On Prem Installation Steps
+Ajay Dhage
+Kafka Client Documentation
+Former user (Deleted)
+Kafka
+Former user (Deleted)
+Kafka on Kubernetes
+Parth Bhide
+Kafka, Zookeeper, CMAK
+Former user (Deleted)
+
+Add a comment
+
+thumbs up
+1
+
+
+
+Deployment:
+============
+167 server password is cvs@rplus or Cvs@rplus
+
+===
+docker dep
+https://docs.comviva.com/pages/viewpage.action?pageId=135281060
+Docker Deployment Doc provided by Poorvi
+
+
+Untar:
+
+tar -xvf filename.tgz
+
+======
+
+scp Translation.war root@172.19.10.169:/tmp/kishor
+password:pvg@1234
+
+
+
+
+
+---
+Dockerconfig data to be deleted:
+
+rm -rf actions/*
+rm -rf commdetector_reward/*
+rm -rf commdetector_sms/*
+rm -rf ecmpeventprocessor_rt/*
+rm -rf enbaeventmanager_rt/*
+rm -rf eredeventmanager_rt/*
+rm -rf eventfilterprocessor_bdna/*
+rm -rf eventfilterprocessor_cdr/*
+rm -rf externalcryptapi/*
+rm -rf fileingestion/*
+rm -rf guilistrecordloader/*
+rm -rf inboundrequesthandler/*
+rm -rf mrtmgui/*
+rm -rf mrtmuc/*
+rm -rf persistencymanager/*
+rm -rf rtbdnaprocessor/*
+rm -rf scheduler/*
+rm -rf servicelayer/*
+rm -rf simulation/*
+rm -rf translation/*
+rm -rf voucherloader/*
+
+-------------------
+DB:
+volt:172.19.10.174, port:21212
+username:emagine
+password:emagine
+============================
+
+[12-12-2022 19:44] Dhanapati Rijal
+182 server 
+/opt/release_files
+
+Step :1
+unset http_proxy
+unset https_proxy
+
+[3:44 PM] Bandi Kanti Chetan
+Lkj@hgf#123
+
+
+Copy the release to our server:
+
+Go to our server to vch v need to copy,
+	
+https://172.19.1.228/Internal_Rel/CVS/MRTM_v7.7.1.282.3.0_Minor_CellC_SouthAfrica_12_04_2023.tgz
+
+Step : 2
+
+wget --no-check-certificate --user=ayushka.bhattacharya --password=10041999Ayub? https://cmrelease.comviva.com/Internal_Rel/CVS/MRTM_v7.12.2.306.3.0_Minor_Optus_Australia_30_06_2025.tgz
+
+
+Step : 3
+
+tar -xvf MRTM_v7.12.0.249.2.0_Minor_Ooredoo_Tunisia_23_07_2024.tgz
+
+Step : 4
+===========================================================
+
+[comviva@cvs-mrtm-devopsautodeployment dockerImages]$ docker images | grep reward
+
+rewarddetector                                  release_v7.12.2.24430        9af0737ac3e0   5 hours ago     299MB
+
+172.25.36.220:5000/rewarddetector               v7.12.2.0.6.1.B3             49c314d01ca1   2 weeks ago     299MB
+
+rewarddetector                                  v7.12.2.0.6.1.B3             49c314d01ca1   2 weeks ago     299MB
+
+ 
+docker inspect <containerID>|grep commit
+ 
+docker inspect 042b087c3c54|grep commit
+ 
+
+
+
+
+
+
+Plm@okn#123
+Asc@fgh#123
+
+tar -xvf filename.tgz
+
+If licence issue
+
+voltdb start --license=license.xml 
+
+
+==========
+Tomcat
+
+169:
+Release path:
+
+/root/pran/MRTM_v7.7.0_Minor_29_12_2020
+
+
+
+Copy the war files from Release path : /root/pran/MRTM_v7.7.0_Minor_29_12_2020/Release/MRTM_v7.7.0
+
+apache tomcat deployment :
+
+kill tomcat 
+
+ps -eaf | grep tomcat 
+
+kill -9 "process_id"
+
+ps -eaf | grep tomcat (re-verify if tomcat process is killed ot not)
+
+clear the existing logs  : 
+cd /opt/tomcat/apache-tomcat-8.0.1/logs
+rm -rf *
+
+create a back up directory for exiting release war files
+cd /opt/tomcat/apache-tomcat-8.0.1/webapps
+mkdir 7.7.0_b2_bkp
+
+clear the exiting war directory :(Release specific)
+rm -rf COMMDetector ECMPEventGenerator ECMPEventProcessor ENBAEventManager InboundRequestHandler
+
+Move the existing war files to the back up directory:
+
+mv COMMDetector.war ECMPEventGenerator.war ECMPEventProcessor.war ENBAEventManager.war InboundRequestHandler.war /opt/tomcat/apache-tomcat-8.0.1/webapps/7.7.0_b2_bkp
+
+
+copy the war files from the release path
+
+cd /root/pran/MRTM_v7.7.0_Minor_29_12_2020/Release/MRTM_v7.7.0
+
+cp COMMDetector.war ECMPEventGenerator.war ECMPEventProcessor.war ENBAEventManager.war InboundRequestHandler.war /opt/tomcat/apache-tomcat-8.0.1/webapps/
+
+restart apache tomcat:
+
+cd /opt/tomcat/apache-tomcat-8.0.1
+sh ./bin/startup.sh &
+
+Verify the logs for any error or exception :
+cd /opt/tomcat/apache-tomcat-8.0.1/logs
+
+vim catalina.out -->Shift+g
+vim -f ECMPEventProcessor.log --> Shift + g
+
+
+etc,..
+
+
+
+
+========================
+UI:
+MRTM.war ; Redcloud,war
+
+169:
+Release path:
+
+/root/pran/MRTM_v7.7.0_Minor_29_12_2020
+
+Copy the war files from Release path : /root/pran/MRTM_v7.7.0_Minor_29_12_2020/Release/MRTM_v7.7.0
+
+apache tomcat deployment :
+
+kill tomcat 
+
+ps -eaf | grep tomcat 
+
+kill -9 "process_id"
+
+ps -eaf | grep tomcat (re-verify if tomcat process is killed ot not)
+
+clear the existing logs  : 
+cd /opt/tomcat/UI-OoredooKuwait/logs
+
+rm -rf *
+
+create a back up directory for exiting release war files
+cd /opt/tomcat/UI-OoredooKuwait/webapps/
+mkdir 7.7.0_b2_bkp
+
+clear the exiting war directory :(Release specific)
+rm -rf MRTM redcloud
+
+Move the existing war files to the back up directory:
+mv MRTM.war redcloud.war /opt/tomcat/UI-OoredooKuwait/webapps/7.7.0_b2_bkp
+
+copy the war files from the release path
+
+cd /root/pran/MRTM_v7.7.0_Minor_29_12_2020/Release/MRTM_v7.7.0
+
+
+cp MRTM.war redcloud.war /opt/tomcat/UI-OoredooKuwait/webapps/
+
+from webapps path : rm -rf MRTM redcloud
+
+restart apache tomcat:
+
+cd /opt/tomcat/UI-OoredooKuwait
+sh ./bin/startup.sh &
+
+
+
+ cd /opt/tomcat/UI-OoredooKuwait/webapps/MRTM
+  vim index.html    { Update  <base href="/"> as <base href="/MRTM/"> }
+
+  <head>
+        <!-- <base href="/integration/">  -->
+        <base href="/">
+        <meta charset="utf-8">
+
+ {save the updated  file}
+
+
+
+cd /opt/tomcat/UI-OoredooKuwait/webapps/MRTM/assets
+vim application.json		{update  "url": "http://172.25.26.124/dev_redcloud/",  as "url": "http://172.19.10.169:8030/redcloud/"}
+{
+	 "url": "http://172.25.26.124/dev_redcloud/",
+
+}
+
+
+Check the UI is up or not in chrome.
+
+
+=================================================================================
+Translation
+
+169:
+Release path:
+
+/root/pran/MRTM_v7.7.0_Minor_29_12_2020
+
+Copy the war files from Release path : /root/pran/MRTM_v7.7.0_Minor_29_12_2020/Release/MRTM_v7.7.0
+
+apache tomcat deployment :
+
+kill tomcat 
+
+ps -eaf | grep tomcat 
+
+kill -9 "process_id"
+
+ps -eaf | grep tomcat (re-verify if tomcat process is killed ot not)
+
+clear the existing logs  : 
+cd /opt/tomcat/Translation-OoredooKuwait/logs
+rm -rf *
+
+
+create a back up directory for exiting release war files
+cd /opt/tomcat/Translation-OoredooKuwait/webapps/
+mkdir 7.7.0_b2_bkp
+
+clear the exiting war directory :(Release specific)
+rm -rf Translation
+
+Move the existing war files to the back up directory:
+mv Translation.war /opt/tomcat/Translation-OoredooKuwait/webapps/7.7.0_b2_bkp
+
+copy the war files from the release path
+cd /root/pran/MRTM_v7.7.0_Minor_29_12_2020/Release/MRTM_v7.7.0
+
+cp Translation.war /opt/tomcat/Translation-OoredooKuwait/webapps/
+
+restart apache tomcat:
+
+cd /opt/tomcat/Translation-OoredooKuwait
+sh ./bin/startup.sh &
+
+
+=================
+In 174
+
+Movecustomer place in /tmp/
+Tranfercampaign place in /tmp/
+Joincampaign place in /tmp/
+=====================
+
+Once the deployment  is done, check the the release path  checksum of war file vd the deployed path  war file: (it shld match)
+
+/root/pran/MRTM_v7.7.0_Minor_29_12_2020/Release/MRTM_v7.7.0
+cksum Translation.war
+
+compare vd
+
+/opt/tomcat/Translation-OoredooKuwait/webapps
+cksum Translation.war
+
+
+similarly for UI and ECMP ENBA ERED
+============================================================
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!1
+
+
+to run postgres ddl queries:
+psql -h 172.25.37.106 -p 5434 -U pgdb -d redcloud
+
+for volt:
+sqlcmd
+
+
+
+run  postgres queries,
+
+Copy the jars of movecustomer,joincampaign etc from release to /tmp path of them mrtm volt server,
+Do changes in voltalterquery load cmd to path /opt/voltdb-ent-10.2.9/lib
+
+eg:
+load classes /opt/voltdb-ent-10.2.9/lib/TransferCampaign.jar;
+================================
+
+xhell
+
+username:root
+password:pvg@1234
+
+===
+LDAP details u can find in redcloud.properties
+
+
+
+=========
+1.Download the release
+2.Check the cksum
+3.check whether all the files are proper,all deployment files we have recievd,
+4.if its the B2, then take backup of dockerconfig_BKP7.10.B3 deploymentfiles_bkp7.10.0.B3/ ered_bkp7.10.0_B3/
+5.delete the config data 
+6.docker image version take from, MRTM_v7.10.0_Minor_25_08_2022/Release/MRTM/dockerImages
+
+no 
+in future if it fails go to thtat path and execute 
+sudo chown comviva:comviva * 
+
+------------------------------------
+7.Take backup of consul 
+--kubectl exec -it $(kubectl get pods -n pvg-singlestore | grep "consul" | awk '{print $1}') -n pvg-singlestore -- consul kv export > pvgconsulconfig.json
+8. Import the consul kv
+-> 1. Open K8 Dashboard
+   2. select respective namespace
+   3. click on pods
+   4. find consul service pod and click on three dot button , then clic on Exec
+   5. cd /consul/data/
+   6. Then execute below command.
+      command :
+     consul kv import @pvgconsulconfig.json
+9.Import through command
+--kubectl exec -i {{ consul_pod_name.stdout }} -n {{ ORGANIZATION_NAME }}-{{ TENANT_NAME }} -- sh -c "consul kv import @/consul/data/pvgconsulconfig.json
+------------------------------------------------------------
+
+RFR
+182-----server
+
+cd /opt/release_files
+wget --no-check-certificate --user=m.ashrith --password=Poi@uyt#123
+ https://cmrelease.comviva.com/Internal_Rel/CVS/MRTM_v7.12.1.306.1.0_Minor_Optus_Australia_29_08_2023.tgz
+
+/cm_release/release/MRTM_v7.12.1.306.1.0.BL01
+
+tar -xvf filename.tgz
+tar -xvf MRTM_v7.12.1.306.1.0_Minor_Optus_Australia_29_08_2023.tgz
+
+------
+mrtm_7_12---schema name for postgres
+
+
+check all the documents
+cksum MRTM_v7.13.0_Minor_10_05_2023.tgz
+
+WInscp 
+download 
+
+
+Jenkins 
+--------
+Readme 
+
+CM RELEASE
+Add tenant for organisation
+
+
+Check whether GUI is up or not 
+error in any pods
+dockerconfig issues
+
+
+wget --no-check-certificate --user=m.ashrith --password=Poi@uyt#123 https://cmrelease.comviva.com/Internal_Rel/CVS/MRTM_v7.12.0.0.0.3_patch_25_04_2024.tgz
+
+====
+
+kubectl get virtualservices -n cuig-comviva
+
+
+DB
+====
+Run DDL from DBearver directly
+
+=====================================
+
+Incase the following error is observed while applying images the following step needs to be done
+
+
+error: resource mapping not found for name: "translation" namespace: "pvg-release" from "translation.yaml": no matches for kind "HorizontalPodAutoscaler" in version "autoscaling/v2beta1"
+ensure CRDs are installed first
+1. Change the module name in the following commands and run then seperately
+
+kubectl convert -f translation.yaml --output=yaml > conv-translation.yaml
+
+cp conv-translation.yaml translation.yaml
+
+2. Post that delete the conv file
+
+rm -rf conv-translation.yaml
+===========================================
+Images verification:
+
+kubectl get pods -n pvg-release -o jsonpath="{.items[*].spec.containers[*].image}" | tr " " "\n" | sort | uniq | egrep 'fulfilment:release_v2.2.0.24782|operationsmanager:release_v7.12.2.24766|sessionmanager:release_v7.12.2_286|selectionmethodengine:release_v7.12.2.24764|menuservice:release_v7.12.2_296|mrtmgui:vdrc_v7.12.2.24761|persistencymanager:release_v7.12.2.24768|translation:release_v7.12.2.24767|templatemanager_7.12.2_547|inboundrequesthandler:release_v7.12.2.25722'
+=============================================
+
+grep -rh "image:" /share/containerfiles/vdrc/test/deploymentfiles/ | awk '{print $2}' | sort | uniq
+===================================================
+
+8.1 deployment: 
+
+path: 217: /data/Comviva/pvg_8_1_deployment
+
+scp -r /cm_release/release/MRTM_v8.0.0/deployment_kit/ comviva@172.25.36.217:/data/Comviva/pvg_8_1_deployment/
+
+
+
+Clearing Kafka & Zookeeper:
+===========================
+
+sudo netstat -tulpan | grep '909'
+
+All kafka related process killed
+
+
+pkill -9 -f kafka (Make sure no other process is running other that kafka related )
+
+
+zookeeper_otn.properties
+
+Before restart
+[root@172 version-2]# pwd
+/tmp/zookeeper/version-2
+
+rm -rf *
+
+[root@172 version-2]# pwd
+/tmp/zookeeper_otn/version-2
+
+rm -rf *
+
+Topics needs to be created
+[root@172 tmp]# cd kafka-logs/
+[root@172 kafka-logs]# ll
+total 0
+
+IN NAMESPACE:
+=============
+
+Stop the streams and core_modules of the namespace
+
+
+In KAfka Path :
+================
+[root@172 logs]# pwd
+/opt/kafkconnect/confluent-6.1.0/logs
+[root@172 logs]# rm -rf *
+
+
+Make all the components of kafka up :
+======================================
+
+nohup ./bin/zookeeper-server-start ./etc/kafka/zookeeper.properties &
+nohup ./bin/zookeeper-server-start ./etc/kafka/zookeeper_otn.properties &
+nohup ./bin/kafka-server-start ./etc/kafka/server.properties &
+nohup ./bin/schema-registry-start ./etc/schema-registry/schema-registry.properties &
+nohup ./bin/connect-standalone ./etc/schema-registry/connect-avro-standalone.properties ./etc/kafka/connect-file-sink.properties &
